@@ -1,0 +1,22 @@
+.blue-background {
+  -fx-background-color: #d1daff;
+}
+.violet-background {
+  -fx-background-color: #a200ff;
+}
+.mid-violet-background {
+  -fx-background-color: #8000d5;
+}
+
+.dark-violet-background {
+  -fx-background-color: #6a00b0;
+}
+.transparent-background {
+  -fx-background-color: transparent;
+}
+.radius{
+  -fx-background-radius: 100px;
+}
+.gradient-violet-background {
+  -fx-background-color: linear-gradient(#8000d5, #a200ff);
+}
