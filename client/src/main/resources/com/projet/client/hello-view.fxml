@@ -3,6 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -99,7 +100,7 @@
                                     <Font name="Ebrima Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="22.0" prefWidth="182.0" text="Hamza : Visca lbarca" textFill="WHITE">
+                              <Label prefHeight="22.0" prefWidth="182.0" text="You : Hala madrid" textFill="WHITE">
                                  <font>
                                     <Font name="Ebrima" size="15.0" />
                                  </font>
@@ -194,6 +195,68 @@
                         <Insets left="2.0" />
                      </HBox.margin>
                   </Label>
+                  <Pane prefHeight="62.0" prefWidth="178.0" HBox.hgrow="ALWAYS" />
+                  <ImageView fitHeight="37.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-menu-2-64.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="12.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <ScrollPane prefHeight="569.0" prefWidth="688.0">
+               <content>
+                  <Pane prefHeight="567.0" prefWidth="686.0" styleClass="gradient-violet-background">
+                     <children>
+                        <ImageView fitHeight="39.0" fitWidth="61.0" layoutX="14.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-account-50.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="53.0" layoutY="42.0" prefHeight="22.0" prefWidth="182.0" styleClass="incoming-message" text="3aa" textFill="WHITE">
+                           <font>
+                              <Font name="Ebrima" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <ImageView fitHeight="39.0" fitWidth="61.0" layoutX="633.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-account-50.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER_RIGHT" layoutX="491.0" layoutY="79.0" prefHeight="42.0" prefWidth="142.0" styleClass="outgoing-message" text="yooooo" textFill="WHITE">
+                           <font>
+                              <Font name="Ebrima" size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </Pane>
+               </content>
+            </ScrollPane>
+            <HBox alignment="CENTER" prefHeight="70.0" prefWidth="688.0">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-trombone-64.png" />
+                     </image>
+                  </ImageView>
+                  <TextField prefHeight="43.0" prefWidth="439.0" promptText="Type a message">
+                     <font>
+                        <Font name="Ebrima" size="19.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-envoyé-64.png" />
+                     </image>
+                  </ImageView>
                </children>
             </HBox>
          </children>

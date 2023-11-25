@@ -18,5 +18,17 @@
   -fx-background-radius: 100px;
 }
 .gradient-violet-background {
-  -fx-background-color: linear-gradient(#8000d5, #a200ff);
+  -fx-background-color: linear-gradient(#c27ffc, #aad4ff);
+}
+.incoming-message {
+  -fx-background-color: #d1daff;
+  -fx-background-radius: 10px;
+  -fx-padding: 10px;
+  -fx-text-fill: #000000;
+}
+.outgoing-message {
+  -fx-background-color: #a200ff;
+  -fx-background-radius: 10px;
+  -fx-padding: 10px;
+  -fx-text-fill: #ffffff;
 }
