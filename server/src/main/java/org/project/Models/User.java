@@ -1,37 +1,51 @@
 package org.project.Models;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import static jakarta.persistence.CascadeType.ALL;
+import static jakarta.persistence.GenerationType.AUTO;
+
+@Entity
+@Table(name = "user")
 public class User {
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = AUTO)
+    private Long idUser;
+    @Column(unique = true)
     private String username;
     private String password;
     private String email;
     private String dateOfBirth;
+
+    @OneToMany(mappedBy = "userOwner")
     private List<Message> messages = new ArrayList<>();
+
+    @OneToMany(mappedBy = "userUnicast", cascade = ALL, orphanRemoval = true)
     private List<Unicast> receivedMessages = new ArrayList<>();
 
-    // Many to Many
-    private List<UserServer> servers = new ArrayList<>();
+    @ManyToMany(mappedBy = "users")
+    private List<Server> servers = new ArrayList<>();
 
     public User() {
     }
 
     public User(Long id, String username, String password, String email, String dateOfBirth) {
-        this.id = id;
+        this.idUser = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdUser() {
+        return idUser;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdUser(Long id) {
+        this.idUser = id;
     }
 
     public String getUsername() {

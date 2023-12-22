@@ -1,30 +1,49 @@
 package org.project.Models;
 
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
+import static jakarta.persistence.CascadeType.ALL;
+import static jakarta.persistence.GenerationType.AUTO;
+
+@Entity
+@Table(name="Server")
 public class Server {
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = AUTO)
+    private Long idServer;
     private String name;
     private int port;
     private String status;
-    private List<UserServer> users;
+    @ManyToMany
+    @JoinTable(
+            name = "user_servers",
+            joinColumns = @JoinColumn(name="id_server"),
+            inverseJoinColumns = @JoinColumn(name="id_user")
+    )
+    private List<User> users = new ArrayList<>();
+
+    @OneToMany(mappedBy = "serverBroadcast", cascade = ALL, orphanRemoval = true)
+    private List<Broadcast> broadcasts = new ArrayList<>();
 
     public Server() {
     }
 
     public Server(Long id, String name, int port, String status) {
-        this.id = id;
+        this.idServer = id;
         this.name = name;
         this.port = port;
         this.status = status;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdServer() {
+        return idServer;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdServer(Long id) {
+        this.idServer = id;
     }
 
     public String getName() {

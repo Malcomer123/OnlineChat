@@ -3,6 +3,9 @@ package org.project;
 
 import org.project.Servers.Server;
 import org.project.Servers.ServerManager;
+import org.project.repos.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -11,10 +14,11 @@ import java.util.Set;
 
 public class App {
     private static final int PORT = 9090;
+
    static ServerManager serverManager = new ServerManager();
 
-    public static void main( String[] args ) throws IOException {
-        System.out.println("Main Server is running");
+
+    public static void main(String[] args ) throws IOException {
         ServerSocket listener = new ServerSocket(PORT);
         try{
             while(true){
