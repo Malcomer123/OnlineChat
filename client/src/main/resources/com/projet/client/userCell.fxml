@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" spacing="15" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="184.0" styleClass="user" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.projet.client.UserController">
+    <children>
+        <ImageView fitHeight="49.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true"
+                   fx:id="userImageView">
+            <image>
+                <Image url="@assets/icons8-account-50.png" />
+            </image>
+        </ImageView>
+        <Label fx:id="userNameLabel" alignment="CENTER" prefHeight="96.0" prefWidth="195.0" text="enset user" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="Ebrima" size="20.0" />
+            </font>
+        </Label>
+    </children>
+</HBox>
