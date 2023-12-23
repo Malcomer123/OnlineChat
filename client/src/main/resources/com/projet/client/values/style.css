@@ -120,24 +120,33 @@
 }
 
 /* MessageCell styling */
+
+
 .messageContainer {
   -fx-background-color: #40444b; /* Discord's message background color */
   -fx-spacing: 10px;/* Margin between message cells */
   -fx-padding: 8px;
   -fx-background-radius: 10px;
 
-
 }
 /* SenderLabel styling */
 .senderLabel {
   -fx-font-weight: bold;
-  -fx-text-fill: #ffffff; /* White text color */
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 14px;/* White text color */
+}
+.messageDate{
+  -fx-font-style: italic;
+  -fx-text-fill: #9ea2a8;
+  -fx-font-size: 13px;
 }
 
 /* ContentLabel styling */
-.contentLabel {
-  -fx-text-fill: #dcddde; /* Light text color */
+.contentText {
+  -fx-fill: #dcddde; /* Light text color */
+  -fx-font-size: 16.0;
   -fx-wrap-text: true; /* Wrap text if it exceeds the width */
+  -fx-max-height: 1110px; /* Fill the height of the label */
 }
 
 /* UserImageView styling */
