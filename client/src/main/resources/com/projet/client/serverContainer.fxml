@@ -9,8 +9,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.geometry.Insets?>
 
-<VBox fx:id="serverContainer" alignment="TOP_CENTER" prefHeight="637.0" prefWidth="198.0" styleClass="serverList" stylesheets="@values/style.css"
- xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+<VBox fx:id="serverContainer" alignment="TOP_CENTER" prefHeight="637.0" prefWidth="198.0" spacing="5.0" styleClass="serverList" stylesheets="@values/style.css"
+ xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1"
     fx:controller="com.projet.client.ServerListController"
 >
     <children>

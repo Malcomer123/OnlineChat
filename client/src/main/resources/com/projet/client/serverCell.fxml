@@ -6,7 +6,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" spacing="15" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="184.0" styleClass="server" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="184.0" styleClass="server"
+      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.projet.client.ServerController">
    <children>
       <ImageView fx:id="serverImageView" fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">

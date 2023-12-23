@@ -6,11 +6,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" spacing="15" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="184.0" styleClass="user" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.projet.client.UserController">
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="48.0" prefWidth="184.0" styleClass="user"
+      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.client.UserController">
     <children>
-        <ImageView fitHeight="49.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true"
-                   fx:id="userImageView">
+        <ImageView fx:id="userImageView" fitHeight="32.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@assets/icons8-account-50.png" />
             </image>

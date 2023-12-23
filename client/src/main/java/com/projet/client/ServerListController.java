@@ -18,6 +18,9 @@ public class ServerListController {
 
 
     public void initialize() {
+        for (int i = 0; i < 15; i++) {
+            addServer("enset user 1","assets/icons8-search-64.png" );
+        }
         // Example servers
         addServer("Server 1","assets/icons8-account-50.png" );
         addServer("Server 2", "assets/icons8-account-50.png");

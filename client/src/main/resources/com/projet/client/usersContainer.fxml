@@ -3,6 +3,8 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox fx:id="usersContainer" alignment="TOP_CENTER" prefHeight="646.0" prefWidth="246.0" styleClass="usersList" stylesheets="@values/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.client.UsersListController">
+<VBox fx:id="usersContainer" alignment="TOP_CENTER" prefHeight="646.0" prefWidth="243.0" spacing="5.0" styleClass="usersList" stylesheets="@values/style.css"
+      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.projet.client.UsersListController">
 
 </VBox>

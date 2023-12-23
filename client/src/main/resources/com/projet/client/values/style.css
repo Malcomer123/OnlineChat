@@ -45,7 +45,7 @@
 .mid{
   -fx-background-color: #3a3a3a;
 }
-.leftBar{
+.dark{
   -fx-background-color: #212121;
 }
 * {
@@ -71,9 +71,9 @@
   -fx-text-fill: #2b2d31;
 }
 .usersList{
-  -fx-background-color: #55575b;
-  -fx-background-radius: 10px;
+  -fx-background-color: #2b2b2b;
   -fx-padding: 10px;
+  -fx-spacing: 10px;
   -fx-text-fill: #2b2d31;
 }
 .server:hover, .user:hover {
@@ -82,9 +82,8 @@
 
   -fx-text-fill: #fdfdfd;
 }
-.server, user{
+.server, .user{
   -fx-padding: 5px;
-  -fx-spacing: 5px;
   -fx-display : flex;
     -fx-justify-content: center;
   -fx-align-items: center;
@@ -105,7 +104,7 @@
 .messageInput {
   -fx-background-color: #40444b; /* Discord's input box background color */
   -fx-text-fill: white; /* Text color */
-  -fx-prompt-text-fill: #b9bbbe; /* Prompt text color */
+  -fx-text-inner-color: #b9bbbe; /* Prompt text color */
   -fx-font-size: 14px;
 }
 
@@ -118,4 +117,32 @@
 
 .messageButton:hover {
   -fx-background-color: #677bc4; /* Hover color */
+}
+
+/* MessageCell styling */
+.messageContainer {
+  -fx-background-color: #40444b; /* Discord's message background color */
+  -fx-spacing: 10px;/* Margin between message cells */
+  -fx-padding: 8px;
+  -fx-background-radius: 10px;
+
+
+}
+/* SenderLabel styling */
+.senderLabel {
+  -fx-font-weight: bold;
+  -fx-text-fill: #ffffff; /* White text color */
+}
+
+/* ContentLabel styling */
+.contentLabel {
+  -fx-text-fill: #dcddde; /* Light text color */
+  -fx-wrap-text: true; /* Wrap text if it exceeds the width */
+}
+
+/* UserImageView styling */
+.senderImage {
+  -fx-border-radius: 50%; /* Round the user image */
+  -fx-background-radius: 50%;
+  -fx-margin: 0 8px 0 0; /* Margin to separate user image from text */
 }
