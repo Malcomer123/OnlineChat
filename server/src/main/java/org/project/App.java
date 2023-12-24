@@ -46,7 +46,7 @@ public class App {
 
                 pw.println("Enter port of existing server or create server ");
                 String PORT = br.readLine();
-                //ServerService serverManager = new ServerService(Integer.parseInt(PORT));
+                //serverService = new ServerService(Integer.parseInt(PORT));
                 //serverManager.run();
             } catch (Exception e){
                 e.printStackTrace();

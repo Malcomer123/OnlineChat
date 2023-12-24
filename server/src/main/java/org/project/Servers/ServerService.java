@@ -14,7 +14,11 @@ public class ServerService implements Runnable{
 
     public ServerService(int port) throws IOException {
         this.serverRepo = new ServerRepo();
-        //this.server = ServerRepo.findServerByPort(port);
+        this.server = ServerRepo.findServerByPort(port);
+        if(server == null){
+            //server = new Server(port);
+            serverRepo.saveServer(server);
+        }
         serverSocket = new ServerSocket(server.getPort());
     }
 

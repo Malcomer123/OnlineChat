@@ -12,7 +12,7 @@ import java.util.List;
 @Transactional
 public class ServerRepo{
     @PersistenceContext(unitName = "database")
-    private EntityManager entityManager = Persistence.createEntityManagerFactory("database").createEntityManager();
+    private static EntityManager entityManager = Persistence.createEntityManagerFactory("database").createEntityManager();
 
     // Create (Save) Server
     public void saveServer(Server server) {
@@ -25,7 +25,7 @@ public class ServerRepo{
     }
 
     // Read (Find) Server by Port
-    public Server findServerByPort(int port) {
+    public static Server findServerByPort(int port) {
         return entityManager.createQuery("SELECT s FROM Server s WHERE s.port = :port", Server.class)
                 .setParameter("port", port)
                 .getSingleResult();
