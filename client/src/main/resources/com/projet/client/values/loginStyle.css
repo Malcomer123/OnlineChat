@@ -63,5 +63,9 @@
     -fx-underline: true;
     //remove the padding
     -fx-padding: 0;
-
+}
+.Error{
+    -fx-text-fill: #f04747; /* Discord's content background color */
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
 }

@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox id="loginForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="431.0" prefWidth="585.0" styleClass="form" stylesheets="@values/loginStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox id="loginForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="585.0" styleClass="form" stylesheets="@values/loginStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="594.0" styleClass="welcomeLabel" text="Welcome back !" textAlignment="CENTER" textFill="WHITE" />
       <Label prefHeight="34.0" prefWidth="339.0" styleClass="emailLabel" text="email or username" textFill="WHITE">
@@ -16,13 +15,23 @@
             <Font name="Ebrima" size="23.0" />
          </font>
       </Label>
-      <TextField prefHeight="49.0" prefWidth="340.0" styleClass="emailInput" />
+      <TextField prefHeight="58.0" prefWidth="546.0" styleClass="emailInput" />
+      <Label id="emailError" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="197.0" styleClass="Error" text="emailError" textFill="#ff5f5f">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
       <Label prefHeight="34.0" prefWidth="339.0" styleClass="passwordLabel" text="password" textFill="WHITE">
          <font>
             <Font name="Ebrima" size="23.0" />
          </font>
       </Label>
-      <TextField prefHeight="49.0" prefWidth="340.0" styleClass="passwordInput" />
+      <TextField prefHeight="58.0" prefWidth="546.0" styleClass="passwordInput" />
+      <Label id="passwordError" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="197.0" styleClass="Error" text="passwordError" textFill="#ff5f5f">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
       <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="596.0" styleClass="loginButton" text="login">
          <font>
             <Font name="Ebrima" size="19.0" />
