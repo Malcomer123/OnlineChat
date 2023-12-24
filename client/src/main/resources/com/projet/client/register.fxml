@@ -4,59 +4,118 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="registerForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="585.0" styleClass="form" stylesheets="@values/loginStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="registerForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="1016.0" styleClass="form" stylesheets="@values/loginStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.client.RegisterController">
     <children>
-        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="594.0" styleClass="welcomeLabel" text="Register now" textAlignment="CENTER" textFill="WHITE" />
-        <Label prefHeight="34.0" prefWidth="339.0" styleClass="emailLabel" text="Email *" textFill="WHITE">
-            <font>
-                <Font name="Ebrima" size="23.0" />
-            </font>
-        </Label>
-        <TextField id="email" prefHeight="49.0" prefWidth="340.0" styleClass="emailInput" />
-      <Label id="emailError" alignment="CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="318.0" prefHeight="26.0" prefWidth="197.0" styleClass="emailError" text="emailError" textFill="#ff5f5f">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="30.0" layoutY="112.0" prefHeight="34.0" prefWidth="339.0" styleClass="emailLabel" text="Username *" textFill="WHITE">
-         <font>
-            <Font name="Ebrima" size="23.0" />
-         </font>
-      </Label>
-      <TextField id="username" layoutX="30.0" layoutY="156.0" prefHeight="49.0" prefWidth="340.0" styleClass="emailInput" />
-      <Label id="usernameError" alignment="CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="216.0" prefHeight="26.0" prefWidth="197.0" styleClass="usernameError" text="usernameError" textFill="#ff5f5f">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-        <Label prefHeight="34.0" prefWidth="339.0" styleClass="passwordLabel" text="Password *" textFill="WHITE">
-            <font>
-                <Font name="Ebrima" size="23.0" />
-            </font>
+      <VBox prefHeight="550.0" prefWidth="375.0">
+         <children>
+              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="594.0" styleClass="welcomeLabel" text="Register now" textAlignment="CENTER" textFill="WHITE" />
+              <Label prefHeight="34.0" prefWidth="339.0" styleClass="emailLabel" text="Email *" textFill="WHITE">
+                  <font>
+                      <Font name="Ebrima" size="23.0" />
+                  </font>
+              </Label>
+              <TextField id="email" prefHeight="49.0" prefWidth="340.0" styleClass="emailInput" />
+            <Label id="emailError" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="197.0" styleClass="emailError" text="emailError" textFill="#ff5f5f">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label prefHeight="34.0" prefWidth="339.0" styleClass="emailLabel" text="Username *" textFill="WHITE">
+               <font>
+                  <Font name="Ebrima" size="23.0" />
+               </font>
+            </Label>
+            <TextField id="username" prefHeight="49.0" prefWidth="340.0" styleClass="emailInput" />
+            <Label id="usernameError" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="197.0" styleClass="usernameError" text="usernameError" textFill="#ff5f5f">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+              <Label prefHeight="34.0" prefWidth="339.0" styleClass="passwordLabel" text="Password *" textFill="WHITE">
+                  <font>
+                      <Font name="Ebrima" size="23.0" />
+                  </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+              </Label>
+              <TextField id="password" prefHeight="49.0" prefWidth="340.0" styleClass="passwordInput" />
+            <Label id="passwordError" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="197.0" styleClass="passwordError" text="passwordError" textFill="#ff5f5f">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+              <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="596.0" styleClass="registerButton" text="register">
+                  <font>
+                      <Font name="Ebrima" size="19.0" />
+                  </font>
+              </Button>
+              <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="522.0">
+                  <children>
+                      <Label prefHeight="35.0" prefWidth="218.0" styleClass="loginLabel" text="Already have an account ?" />
+                      <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="64.0" styleClass="loginLink" text="Login" />
+                  </children>
+              </HBox>
+         </children>
+      </VBox>
+      <Pane prefHeight="550.0" prefWidth="6.0" styleClass="separator">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
-        </Label>
-        <TextField id="password" prefHeight="49.0" prefWidth="340.0" styleClass="passwordInput" />
-      <Label id="passwordError" alignment="CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="538.0" prefHeight="26.0" prefWidth="197.0" styleClass="passwordError" text="passwordError" textFill="#ff5f5f">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-        <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="596.0" styleClass="registerButton" text="register">
-            <font>
-                <Font name="Ebrima" size="19.0" />
-            </font>
-        </Button>
-        <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="522.0">
-            <children>
-                <Label prefHeight="35.0" prefWidth="218.0" styleClass="loginLabel" text="Already have an account ?" />
-                <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="64.0" styleClass="loginLink" text="Login" />
-            </children>
-        </HBox>
+         <HBox.margin>
+            <Insets left="10.0" right="10.0" />
+         </HBox.margin>
+      </Pane>
+      <VBox alignment="CENTER" prefHeight="550.0" prefWidth="555.0" styleClass="right">
+         <children>
+            <Label prefHeight="125.0" prefWidth="320.0" styleClass="title" text="ChatSphere" textFill="WHITE">
+               <font>
+                  <Font name="Ebrima" size="54.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="81.0" layoutY="60.0" prefHeight="180.0" prefWidth="492.0" styleClass="desc" text="A multithreading chat app devlopped by: " textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Ebrima" size="33.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="193.0" prefWidth="462.0" spacing="20.0">
+               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <children>
+                     <ImageView id="imageAli" fitHeight="80.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@assets/ali.png" />
+                        </image>
+                     </ImageView>
+                     <Label styleClass="name" text="Ali" textFill="WHITE">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </VBox>
+               <VBox alignment="CENTER" layoutX="93.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                  <children>
+                     <ImageView id="imageAchraf" fitHeight="76.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@assets/achraf.png" />
+                        </image>
+                     </ImageView>
+                     <Label styleClass="name" text="Achraf" textFill="WHITE">
+                        <font>
+                           <Font size="28.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </VBox>
+            </HBox>
+         </children>
+      </VBox>
     </children>
-</VBox>
+</HBox>
