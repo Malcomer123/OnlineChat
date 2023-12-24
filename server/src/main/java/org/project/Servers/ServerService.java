@@ -1,51 +1,41 @@
 package org.project.Servers;
 
+import org.project.Models.Server;
+import org.project.repos.ServerRepo;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Server {
-    ServerSocket serverSocket;
-    private final int PORT;
-    //Logger logger = LoggerFactory.getLogger(Server.class);
+public class ServerService implements Runnable{
+    private ServerRepo serverRepo;
+    private ServerSocket serverSocket;
+    private Server server;
 
-    
-    public Server(int PORT) throws IOException {
-        this.PORT = PORT;
-        serverSocket = new ServerSocket(PORT);
-
-    }
-
-    public int getPORT() {
-        return PORT;
-    }
-
-    public void start() {
-        //logger.info("Server started on port " + PORT);
-        System.out.println("Server started on port " + PORT);
-        while (true) {
-            try {
-                new Handler(serverSocket.accept()).start();
-            } catch (IOException e) {
-                //logger.error("Error accepting client connection", e);
-                System.out.println("Error accepting client connection");
-            }
-        }
+    public ServerService(int port) throws IOException {
+        this.serverRepo = new ServerRepo();
+        //this.server = ServerRepo.findServerByPort(port);
+        serverSocket = new ServerSocket(server.getPort());
     }
 
     @Override
-    public String toString() {
-        return ""+PORT;
-    }
+    public void run() {
+        while(true){
+            try{
+                Socket socket = serverSocket.accept();
+                new Handler(socket).start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
+    }
     private static class Handler extends Thread{
         private Socket socket;
-        private int PORT;
         private ObjectInputStream input;
         private OutputStream os;
         private ObjectOutputStream output;
         private InputStream is;
-        ServerManager serverManager = new ServerManager();
 
         public Handler(Socket socket) {
             this.socket = socket;

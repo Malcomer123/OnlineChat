@@ -1,11 +1,11 @@
-package org.project.Servers;
+/*package org.project.Servers;
 
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
 public class ServerManager {
-    private Set<Server> servers;
+    private Set<ServerService> servers;
 
     public ServerManager() {
         this.servers = new HashSet<>();
@@ -13,7 +13,7 @@ public class ServerManager {
 
     public void createServer(int port) {
         try {
-            Server server = new Server(port);
+            ServerService server = new ServerService(port);
             servers.add(server);
             server.start();
         } catch (IOException e) {
@@ -21,8 +21,8 @@ public class ServerManager {
         }
     }
 
-    public Set<Server> getAvailableServers() {
+    public Set<ServerService> getAvailableServers() {
         return servers;
     }
 
-}
+}*/

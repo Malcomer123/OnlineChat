@@ -1,24 +1,17 @@
 package org.project;
 
 
-import org.project.Servers.Server;
-import org.project.Servers.ServerManager;
-import org.project.repos.UserRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.project.Servers.ServerService;
+import org.project.repos.ServerRepo;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Set;
 
 public class App {
     private static final int PORT = 9090;
 
-   static ServerManager serverManager = new ServerManager();
-
-
-    public static void main(String[] args ) throws IOException {
+    public static void main(String[] args) throws IOException {
         ServerSocket listener = new ServerSocket(PORT);
         try{
             while(true){
@@ -32,8 +25,8 @@ public class App {
 
     private static class Handler extends Thread{
         private Socket socket;
-        private int PORT;
-        private Set<Server> servers;
+        private ServerService serverService;
+        private ServerRepo serverRepo = new ServerRepo();
         private PrintWriter pw;
         private InputStreamReader isr;
         private BufferedReader br;
@@ -44,26 +37,17 @@ public class App {
             this.isr = new InputStreamReader(socket.getInputStream());
             this.br = new BufferedReader(isr);
             this.pw = new PrintWriter(socket.getOutputStream(), true);
-            this.servers = serverManager.getAvailableServers();
-        }
-
-        public void setSocket(Socket socket) {
-            this.socket = socket;
         }
 
         public void run(){
             try{
                 pw.println("Current list of servers: ");
-                pw.println(serverManager.getAvailableServers());
+                pw.println(serverRepo.getAllServers());
 
                 pw.println("Enter port of existing server or create server ");
                 String PORT = br.readLine();
-                for(Server server:servers) {
-                    if (server.getPORT() == Integer.parseInt(PORT)) {
-                        pw.println("Server already exists, connecting to it...");
-                    }
-                }
-                serverManager.createServer(Integer.parseInt(PORT));
+                //ServerService serverManager = new ServerService(Integer.parseInt(PORT));
+                //serverManager.run();
             } catch (Exception e){
                 e.printStackTrace();
             } finally {

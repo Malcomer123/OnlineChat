@@ -7,10 +7,6 @@ import static jakarta.persistence.GenerationType.AUTO;
 @Entity
 @Table(name = "unicasts")
 public class Unicast extends Message{
-    @Id
-    @GeneratedValue(strategy = AUTO)
-    private Long idUnicast;
-
     @ManyToOne
     @JoinColumn(name = "id_user")
     private User userUnicast;
@@ -19,16 +15,7 @@ public class Unicast extends Message{
         super();
     }
 
-    public Unicast(Long id, String message, User userOwner, Long idUnicast) {
+    public Unicast(Long id, String message, User userOwner) {
         super(id, message, userOwner);
-        this.idUnicast = idUnicast;
-    }
-
-    public Long getIdUnicast() {
-        return idUnicast;
-    }
-
-    public void setIdUnicast(Long idUnicast) {
-        this.idUnicast = idUnicast;
     }
 }

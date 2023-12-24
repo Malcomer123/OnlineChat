@@ -9,8 +9,8 @@ import static jakarta.persistence.CascadeType.ALL;
 import static jakarta.persistence.GenerationType.AUTO;
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "users")
+public class User{
     @Id
     @GeneratedValue(strategy = AUTO)
     private Long idUser;

@@ -9,7 +9,7 @@ import static jakarta.persistence.CascadeType.ALL;
 import static jakarta.persistence.GenerationType.AUTO;
 
 @Entity
-@Table(name="Server")
+@Table(name="server")
 public class Server {
     @Id
     @GeneratedValue(strategy = AUTO)
