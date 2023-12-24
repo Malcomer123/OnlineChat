@@ -26,6 +26,8 @@
     -fx-spacing: 10px; /* Spacing between children */
     -fx-border-radius: 8px; /* Rounded corners */
     -fx-background-radius: 8px;
+    -fx-text-fill: #d3d5d7; /* Discord's content background color */
+    -fx-font-size: 18px;
 }
 .loginButton, .registerButton{
     -fx-background-color: #7289da; /* Discord's content background color */

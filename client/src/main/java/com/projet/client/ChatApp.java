@@ -10,7 +10,7 @@ import java.io.IOException;
 public class ChatApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ChatApp.class.getResource("register.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ChatApp.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("WhatsApp ?!");
         stage.setScene(scene);
