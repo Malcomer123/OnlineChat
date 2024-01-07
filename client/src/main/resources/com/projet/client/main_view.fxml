@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="body" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1187.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.client.mainController">
+<BorderPane id="body" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1187.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.client.mainController">
    <left>
       <HBox prefHeight="700.0" prefWidth="250.0" style="-fx-background-color: gray;" styleClass="left" BorderPane.alignment="CENTER">
          <children>
@@ -61,27 +61,6 @@
             </VBox>
             <VBox prefHeight="700.0" prefWidth="214.0" styleClass="default" stylesheets="@values/style.css">
                <children>
-                  <HBox alignment="CENTER" prefHeight="39.0" prefWidth="206.0">
-                     <children>
-                        <ImageView fitHeight="28.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@assets/icons8-search-64.png" />
-                           </image>
-                        </ImageView>
-                        <TextField id="searchInput" promptText="Search" styleClass="transparent-background">
-                           <font>
-                              <Font name="Ebrima" size="13.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                     <styleClass>
-                        <String fx:value="dark" />
-                        <String fx:value="blue-background" />
-                     </styleClass>
-                  </HBox>
                   <ScrollPane prefHeight="650.0" prefWidth="189.0">
                      <content>
                        <fx:include fx:id="serverContainer" source="serverContainer.fxml" />
@@ -165,16 +144,7 @@
    <right>
       <VBox prefHeight="700.0" prefWidth="261.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="62.0" prefWidth="156.0" styleClass="default" stylesheets="@values/style.css">
-               <children>
-                  <Label contentDisplay="CENTER" prefHeight="19.0" prefWidth="70.0" text="Users" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Ebrima Bold" size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <ScrollPane prefHeight="649.0" prefWidth="247.0" styleClass="default" stylesheets="@values/style.css">
+            <ScrollPane prefHeight="700.0" prefWidth="262.0" styleClass="default" stylesheets="@values/style.css">
                <content>
       
                   <fx:include fx:id="usersContainer" source="usersContainer.fxml" />

@@ -12,7 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="registerForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="1016.0" styleClass="form" stylesheets="@values/loginStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.client.RegisterController">
+<HBox id="registerForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="1016.0" styleClass="form"
+      stylesheets="@values/loginStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.projet.client.RegisterController">
     <children>
       <VBox prefHeight="550.0" prefWidth="375.0">
          <children>
@@ -22,7 +24,7 @@
                       <Font name="Ebrima" size="23.0" />
                   </font>
               </Label>
-              <TextField id="email" prefHeight="49.0" prefWidth="340.0" styleClass="emailInput" />
+              <TextField fx:id="email" prefHeight="49.0" prefWidth="340.0" styleClass="emailInput" />
             <Label id="emailError" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="197.0" styleClass="emailError" text="emailError" textFill="#ff5f5f">
                <font>
                   <Font size="16.0" />
@@ -33,7 +35,7 @@
                   <Font name="Ebrima" size="23.0" />
                </font>
             </Label>
-            <TextField id="username" prefHeight="49.0" prefWidth="340.0" styleClass="emailInput" />
+            <TextField fx:id="username" id="username" prefHeight="49.0" prefWidth="340.0" styleClass="emailInput" />
             <Label id="usernameError" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="197.0" styleClass="usernameError" text="usernameError" textFill="#ff5f5f">
                <font>
                   <Font size="16.0" />
@@ -47,13 +49,13 @@
                   <Insets />
                </opaqueInsets>
               </Label>
-            <PasswordField id="password" prefHeight="49.0" prefWidth="374.0" styleClass="passwordInput" />
+            <PasswordField id="password" fx:id="password" prefHeight="49.0" prefWidth="374.0" styleClass="passwordInput" />
             <Label id="passwordError" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="198.0" styleClass="passwordError" text="passwordError" textFill="#ff5f5f">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-              <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="596.0" styleClass="registerButton" text="register">
+              <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="596.0" styleClass="registerButton" text="register" onAction="#register">
                   <font>
                       <Font name="Ebrima" size="19.0" />
                   </font>
@@ -61,7 +63,7 @@
               <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="522.0">
                   <children>
                       <Label prefHeight="35.0" prefWidth="218.0" styleClass="loginLabel" text="Already have an account ?" />
-                      <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="64.0" styleClass="loginLink" text="Login" />
+                      <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="64.0" styleClass="loginLink" text="Login" onAction="#gotoLogin" />
                   </children>
               </HBox>
          </children>

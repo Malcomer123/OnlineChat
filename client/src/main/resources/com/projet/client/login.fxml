@@ -12,7 +12,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="loginForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="1016.0" spacing="20.0" styleClass="form" stylesheets="@values/loginStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="loginForm" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="1016.0" spacing="20.0" styleClass="form"
+      stylesheets="@values/loginStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="com.projet.client.LoginController"
+>
    <children>
       <VBox alignment="CENTER" prefHeight="454.0" prefWidth="393.0">
          <children>
@@ -22,7 +25,7 @@
                   <Font name="Ebrima" size="23.0" />
                </font>
             </Label>
-            <TextField prefHeight="49.0" prefWidth="391.0" styleClass="emailInput" />
+            <TextField prefHeight="49.0" prefWidth="391.0" styleClass="emailInput"  fx:id="username"/>
             <Label id="emailError" alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="198.0" styleClass="Error" text="emailError" textFill="#ff5f5f">
                <font>
                   <Font size="16.0" />
@@ -39,7 +42,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="596.0" styleClass="loginButton" text="login">
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="596.0" styleClass="loginButton" text="login" onAction="#login">
                <font>
                   <Font name="Ebrima" size="19.0" />
                </font>
@@ -47,7 +50,7 @@
             <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="522.0">
                <children>
                   <Label prefHeight="35.0" prefWidth="157.0" styleClass="registerLabel" text="Need an account ?" />
-                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="84.0" styleClass="registerLink" text="Register" />
+                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="84.0" styleClass="registerLink" text="Register" onAction="#gotoRegister" />
                </children>
             </HBox>
          </children>
