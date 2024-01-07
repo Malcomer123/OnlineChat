@@ -1,5 +1,6 @@
 package org.project;
 
+import org.project.Controllers.UserController;
 import org.project.Models.Message;
 
 import java.io.*;
@@ -52,7 +53,8 @@ public class Application{
                             System.out.println("Received message: " + message);
                             break;
                         case "User":
-                            System.out.println("Received user: " + object);
+                            UserController userController = new UserController(socket);
+                            System.out.println(userController.authentication());
                             break;
                         default:
                             System.out.println("Received unknown object: " + object);
