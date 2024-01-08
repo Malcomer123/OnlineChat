@@ -16,6 +16,5 @@ public class Unicast extends Message{
     }
 
     public Unicast(Long id, String message, User userOwner) {
-        super(id, message, userOwner);
     }
 }
