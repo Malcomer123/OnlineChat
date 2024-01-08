@@ -17,7 +17,6 @@ public class Broadcast extends Message{
     }
 
     public Broadcast(Long id, String message, User userOwner,Server serverBroadcast) {
-        super(id, message, userOwner);
         this.serverBroadcast = serverBroadcast;
     }
 

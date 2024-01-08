@@ -62,6 +62,16 @@ public class Server {
         this.port = port;
     }
 
+    @Override
+    public String toString() {
+        return idServer +
+                "," + name +
+                "," + port +
+                "," + status +
+                "," + users +
+                "," + broadcasts;
+    }
+
     public String getStatus() {
         return status;
     }

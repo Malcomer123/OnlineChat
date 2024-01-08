@@ -18,13 +18,12 @@ public class User{
     private String username;
     private String password;
     private String email;
-    private String dateOfBirth;
 
     @OneToMany(mappedBy = "userOwner")
     private List<Message> messages = new ArrayList<>();
 
     @OneToMany(mappedBy = "userUnicast", cascade = ALL, orphanRemoval = true)
-    private List<Unicast> receivedMessages = new ArrayList<>();
+    private List<Message> receivedMessages = new ArrayList<>();
 
     @ManyToMany(mappedBy = "users")
     private List<Server> servers = new ArrayList<>();
@@ -32,12 +31,27 @@ public class User{
     public User() {
     }
 
-    public User(Long id, String username, String password, String email, String dateOfBirth) {
+    public User(Long id, String username, String password, String email) {
         this.idUser = id;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.dateOfBirth = dateOfBirth;
+    }
+
+    public User(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email=email;
+    }
+
+    @Override
+    public String toString() {
+        return idUser +
+                "|" + username + '\'' +
+                "|" + password + '\'' +
+                "|" + email + '\'' +
+                "|" + messages +
+                "|" + receivedMessages;
     }
 
     public Long getIdUser() {
@@ -72,11 +86,11 @@ public class User{
         this.email = email;
     }
 
-    public String getDateOfBirth() {
-        return dateOfBirth;
+    public List<Message> getMessages() {
+        return messages;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public List<Message> getReceivedMessages() {
+        return receivedMessages;
     }
 }
