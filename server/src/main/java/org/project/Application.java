@@ -10,10 +10,8 @@ import org.project.repos.UserRepo;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Application{
 
@@ -55,13 +53,12 @@ public class Application{
                 input = new ObjectInputStream(is);
                 os = socket.getOutputStream();
                 output = new ObjectOutputStream(os);
+                Long idClient = 0L;
 
                 while (socket.isConnected()) {
                     HashMap<String, String> objectReceived = (HashMap<String, String>) input.readObject();
-                    Long idClient = 0L;
                     switch (objectReceived.get("type")) {
                         case "register":
-                            System.out.println(objectReceived);
                             userRepo.saveUser(new User(objectReceived.get("username"), objectReceived.get("password"), objectReceived.get("email")));
                             output.writeObject("true");
                             output.flush();
@@ -71,6 +68,7 @@ public class Application{
                             if(user.getPassword().equals(objectReceived.get("password"))){
                                 output.writeObject("true");
                                 idClient = user.getIdUser();
+                                System.out.println(idClient);
                             }
                             else{
                                 output.writeObject("false");
@@ -78,12 +76,10 @@ public class Application{
                             output.flush();
                             break;
                         case "getServers":
-                            System.out.println(serverRepo.getAllServers().toString());
                             output.writeObject(serverRepo.getAllServers().toString());
                             output.flush();
                             break;
                         case "search":
-                            System.out.println(objectReceived.get("filter"));
                             output.writeObject(userRepo.findUsersByUsername(objectReceived.get("search")).toString());
                             output.flush();
                             break;
@@ -92,10 +88,24 @@ public class Application{
                             output.flush();
                             break;
                         case "getMessages":
-                            User t = userRepo.findUserById(idClient);
-                            List<Message> messages = messageRepo.getUnicastMessages(idClient, Long.valueOf(objectReceived.get("userID")));
+                            User accountOwner = userRepo.findUserById(idClient);
+                            User accountReceiver = userRepo.findUserById(Long.valueOf(objectReceived.get("targetId")));
+                            List<Message> sentMessages = accountOwner.getMessages().stream()
+                                    .filter(msg -> Objects.equals(msg.getUserUnicast().getIdUser(), Long.valueOf(objectReceived.get("targetId"))))
+                                    .collect(Collectors.toList());
+                            Long finalIdClient = idClient;
+                            System.out.println(finalIdClient);
+                            List<Message> receivedMessages = accountReceiver.getMessages().stream()
+                                    .filter(msg -> Objects.equals(msg.getUserUnicast().getIdUser(), finalIdClient))
+                                    .collect(Collectors.toList());
+
+                            List<Message> combinedSortedMessages = new ArrayList<>(sentMessages);
+                            combinedSortedMessages.addAll(receivedMessages);
+
+                            combinedSortedMessages.sort(Comparator.comparing(Message::getDate));
+
                             List<String> messagesString = new ArrayList<>();
-                            for(Message m: messages){
+                            for(Message m: combinedSortedMessages){
                                 messagesString.add(m.toString());
                             }
                             output.writeObject(messagesString);

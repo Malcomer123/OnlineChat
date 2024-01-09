@@ -60,9 +60,17 @@ public class Message implements Serializable {
         this.userOwner = userOwner;
     }
 
+    public User getUserUnicast() {
+        return userUnicast;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
     @Override
     public String toString() {
-        return message +
+        return userOwner.getUsername() + "|" + message +
                 "|" + date;
     }
 }
