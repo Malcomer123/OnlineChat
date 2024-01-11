@@ -54,7 +54,10 @@ public class ServerListController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        /*
         NetworkManager networkManager = NetworkManager.getInstance();
+         */
+         /*
         data.put("type", "getServers");
         try {
 
@@ -62,7 +65,7 @@ public class ServerListController implements Initializable {
             String response = null;
             response = (String) networkManager.receiveObject();
 
-            System.out.println("response: " + response);
+            System.out.println("servers response: " + response);
             String[] servers = response.split(",");
 
             for (String server : servers) {
@@ -79,5 +82,7 @@ public class ServerListController implements Initializable {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        */
+
     }
 }

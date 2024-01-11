@@ -22,13 +22,18 @@ public class NetworkManager {
         return instance;
     }
 
-    public void connectToServer(String serverAddress, int port) throws IOException {
-        socket = new Socket(serverAddress, port);
-        oos = new ObjectOutputStream(socket.getOutputStream());
-        ois = new ObjectInputStream(socket.getInputStream());
+    public void connectToServer(String serverAddress, int port) {
+        try {
+            socket = new Socket(serverAddress, port);
+            oos = new ObjectOutputStream(socket.getOutputStream());
+            ois = new ObjectInputStream(socket.getInputStream());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void sendObject(Object obj) throws IOException {
+        System.out.println("object to  send : "+ obj);
         oos.writeObject(obj);
         oos.flush();
     }

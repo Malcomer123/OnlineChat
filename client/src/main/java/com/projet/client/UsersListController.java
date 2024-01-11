@@ -45,6 +45,9 @@ public class UsersListController implements Initializable {
                     id = id.substring(1);
                 }
                 addUser(  id, user.split("\\|")[1], "assets/icons8-account-50.png");
+                // set the first user as the default user
+                Preferences pref = Preferences.userRoot();
+                pref.put("activeUser", users[0]);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -93,17 +96,9 @@ public class UsersListController implements Initializable {
     private void addUser(String userID, String userName, String imageUrl) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("userCell.fxml"));
-
-
             Node serverNode = loader.load();
             UserController userController = loader.getController();
             userController.setUserDetails(userID, userName, imageUrl);
-
-            // Access the controller of the loaded FXML
-
-            // Set user details
-
-            // Add the user component to the VBox
             usersContainer.getChildren().add(serverNode);
 
         } catch (IOException e) {

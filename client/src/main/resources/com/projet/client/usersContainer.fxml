@@ -8,25 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="usersContainer" alignment="TOP_CENTER" prefHeight="646.0" prefWidth="243.0" spacing="5.0" styleClass="usersList" stylesheets="@values/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.client.UsersListController">
-   <children>
-      <HBox alignment="CENTER" prefHeight="39.0" prefWidth="206.0">
-         <children>
-            <ImageView fitHeight="28.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@assets/icons8-search-64.png" />
-               </image>
-            </ImageView>
-            <TextField id="searchInput" fx:id="search"  promptText="Search" styleClass="transparent-background">
-               <font>
-                  <Font name="Ebrima" size="13.0" />
-               </font>
-            </TextField>
-         </children>
-         <styleClass>
-            <String fx:value="dark" />
-            <String fx:value="blue-background" />
-         </styleClass>
-      </HBox>
-   </children>
+<VBox>
+
 </VBox>

@@ -3,7 +3,9 @@ package com.projet.client;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,9 +31,8 @@ public class UserController implements Initializable {
 
     private final HashMap<String, String> data = new HashMap<>();
     String userID;
-
-
     NetworkManager networkManager;
+    ChatController chatController;
 
     public void setUserDetails(String id , String userName, String imageUrl) {
         System.out.println(id + " idd ");
@@ -52,13 +53,14 @@ public class UserController implements Initializable {
 
     @FXML
 
-    public void showMessages(MouseEvent event) {
+    public void showMessages(MouseEvent event ) {
         try {
-            System.out.println("ddddd");
             Preferences pref = Preferences.userRoot();
+            // change the active user
+            pref.put("activeUser", userID);
             data.put("type", "getMessages");
             String id = userID.trim();
-            data.put("userID", id);
+            data.put("targetId", id);
             networkManager.sendObject(data);
 
             Object receivedObject = networkManager.receiveObject();
@@ -67,10 +69,17 @@ public class UserController implements Initializable {
                 String response = (String) receivedObject;
                 System.out.println("messsages : " + response);
                 pref.put("messages", response);
-            } else if (receivedObject instanceof ArrayList) {
+            } else if (receivedObject instanceof ArrayList<?> receivedList) {
                 // Handle the received ArrayList appropriately
-                ArrayList<?> receivedList = (ArrayList<?>) receivedObject;
                 System.out.println("receivedList: " + receivedList);
+                pref.put("messages", receivedList.toString());
+
+
+
+                FXMLLoader loader  = new FXMLLoader(getClass().getResource("chatContainer.fxml"));
+                ChatController chatController = loader.getController();
+                //rerender chatController
+                chatController.initialize();
 
                 // Process the list elements
             } else {
@@ -88,6 +97,7 @@ public class UserController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // init chatApp
         networkManager = NetworkManager.getInstance();
+
         userBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

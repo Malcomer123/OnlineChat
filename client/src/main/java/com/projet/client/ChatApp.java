@@ -37,14 +37,9 @@ public class ChatApp extends Application implements Initializable {
         Preferences pref = Preferences.userRoot();
 
 
-        try {
-            networkManager.connectToServer("172.20.234.124", 9090);
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Handle connection error
-        }
-//setupSocketCommunication();
-        laodScene("main_view.fxml");
+        networkManager.connectToServer("localhost", 9090);
+        //setupSocketCommunication();
+        laodScene("login.fxml");
     }
 
 
