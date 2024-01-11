@@ -128,8 +128,8 @@ public class mainController implements Initializable {
                 return;
             }
             String[] messagesString = response.split(",");
-
-
+            List<Message> messages = new ArrayList<Message>();
+          
             for (String message : messagesString) {
                 String[] messageParams  = message.split("\\|");
                 System.out.println(message.toString());
