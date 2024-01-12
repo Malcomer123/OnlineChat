@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
@@ -46,13 +47,16 @@
                      </VBox.margin>
                   </ImageView>
                   <Pane prefHeight="455.0" prefWidth="35.0" styleClass="dark" VBox.vgrow="ALWAYS" />
-                  <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="30.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="logoutButton"  fitHeight="38.0" fitWidth="38.0" layoutX="30.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#logout">
                      <image>
                         <Image url="@assets/icons8-logout-64.png" />
                      </image>
                      <VBox.margin>
                         <Insets bottom="30.0" />
                      </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                </children>
                <styleClass>
@@ -107,22 +111,28 @@
                   </children>
                </HBox>
                <ListView fx:id="messagesList" prefHeight="591.0" prefWidth="694.0" />
-               <HBox alignment="CENTER" prefHeight="68.0" prefWidth="655.0">
+               <HBox alignment="CENTER" prefHeight="99.0" prefWidth="694.0">
                   <children>
                      <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@assets/icons8-trombone-64.png" />
                         </image>
                      </ImageView>
-                     <TextField fx:id="messageInput" prefHeight="43.0" prefWidth="439.0" promptText="Type a message" styleClass="messageInput">
+                     <TextField fx:id="messageInput" alignment="TOP_LEFT" prefHeight="144.0" prefWidth="439.0" promptText="Type a message" styleClass="messageInput">
                         <font>
                            <Font name="Ebrima" size="19.0" />
                         </font>
+                        <cursor>
+                           <Cursor fx:constant="TEXT" />
+                        </cursor>
                      </TextField>
                      <ImageView id=".messageButton:hover {" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#sendMessage" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@assets/icons8-envoyé-64.png" />
                         </image>
+                        <cursor>
+                           <Cursor fx:constant="MOVE" />
+                        </cursor>
                      </ImageView>
                   </children>
                   <styleClass>
@@ -133,27 +143,37 @@
                </HBox>
             </children>
          </VBox>
-         <VBox fx:id="usersContainer" alignment="TOP_CENTER" prefHeight="646.0" prefWidth="243.0" spacing="5.0" styleClass="usersList" stylesheets="@values/style.css">
+         <VBox fx:id="usersContainer" alignment="TOP_CENTER" prefHeight="646.0" prefWidth="243.0" spacing="5.0" styleClass="default" stylesheets="@values/style.css">
             <children>
-               <HBox alignment="CENTER" prefHeight="39.0" prefWidth="206.0">
+               <HBox alignment="CENTER" prefHeight="71.0" prefWidth="242.0">
                   <children>
                      <ImageView fitHeight="28.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                            <Image url="@assets/icons8-search-64.png" />
                         </image>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
                      </ImageView>
-                     <TextField id="searchInput" fx:id="search" promptText="Search" styleClass="transparent-background">
+                     <TextField id="searchInput" fx:id="search" promptText="Search">
                         <font>
                            <Font name="Ebrima" size="13.0" />
                         </font>
+                        <styleClass>
+                           <String fx:value="transparent-background" />
+                           <String fx:value="dark" />
+                        </styleClass>
+                        <cursor>
+                           <Cursor fx:constant="TEXT" />
+                        </cursor>
                      </TextField>
                   </children>
                   <styleClass>
-                     <String fx:value="dark" />
+                     <String fx:value="mid" />
                      <String fx:value="blue-background" />
                   </styleClass>
                </HBox>
-               <ListView fx:id="usersList" prefHeight="200.0" prefWidth="200.0" />
+               <ListView fx:id="usersList" prefHeight="647.0" prefWidth="242.0" />
             </children>
          </VBox>
 

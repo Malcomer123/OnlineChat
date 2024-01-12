@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -16,9 +17,11 @@ public class LoginController implements Initializable {
 
     @FXML private TextField username;
     @FXML private TextField password;
+    @FXML private Label usernameError;
+    @FXML private Label passwordError;
     @FXML private Button login;
     private NetworkManager networkManager;
-    private HashMap<String, String> data = new HashMap<>();
+  //  private HashMap<String, String> data = new HashMap<>();
 
 
     @Override
@@ -34,7 +37,21 @@ public class LoginController implements Initializable {
         System.out.println("LoginController.login");
         System.out.println("username: " + username.getText());
         System.out.println("password: " + password.getText());
+        //clear error labels
+        usernameError.setText("");
+        passwordError.setText("");
+        //check if the username and password are empty
+        if(username.getText().isEmpty()){
+            usernameError.setText("please enter your username");
+            return;
+        }if(password.getText().isEmpty()){
+            passwordError.setText("please enter your password");
+            return;
+        }
+
+
         // send username and password to server as HashMap
+        HashMap<String, String> data = new HashMap<>();
         data.put("username", username.getText());
         data.put("password", password.getText());
         data.put("type", "login");
@@ -46,8 +63,11 @@ public class LoginController implements Initializable {
         if (response.equals("true")) {
             gotoChat(event);
         } else {
-            System.out.println("login failed");
-            // show error message
+            if (response.equals("false")) {
+                passwordError.setText("your password is incorrect");
+            } else {
+                usernameError.setText("please check your username");
+            }
         }
 
     }

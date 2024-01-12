@@ -5,6 +5,8 @@ import com.projet.client.utils.User;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,6 +16,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 import javax.crypto.MacSpi;
@@ -38,16 +41,14 @@ public class mainController implements Initializable {
 
     @FXML
     private ListView<String> listView;
-
     @FXML
     private ListView<User> usersList;
-
     @FXML
     private ListView<Message> messagesList;
-
     @FXML
     private TextField messageInput;
-
+    @FXML
+    private ImageView logoutButton;
     NetworkManager networkManager;
 
     private int userID;
@@ -56,6 +57,29 @@ public class mainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         initUsers();
         initMessages();
+    }
+
+    @FXML
+    private void logout(Event
+                                    event) {
+        try {
+            System.out.println("logout");
+            networkManager = NetworkManager.getInstance();
+            Preferences pref = Preferences.userRoot();
+            HashMap<String, String> data = new HashMap<>();
+            // change the active user
+            System.out.println("active user: " + pref.get("activeUser", null));
+            pref.put("activeUser", "");
+            HashMap<String, String> sendData = new HashMap<>();
+            sendData.put("type", "logout");
+            networkManager.sendObject(sendData);
+            Object receivedObject = networkManager.receiveObject();
+            System.out.println("logout : " + receivedObject);
+            Navigation navigation = new Navigation();
+            navigation.navigate(event, "login.fxml");
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private void initUsers(){
@@ -84,9 +108,10 @@ public class mainController implements Initializable {
                     id = id.substring(1);
                 }
                 users.add(new User(Integer.parseInt(id.trim()), user.split("\\|")[1], "assets/icons8-account-50.png"));
-                // set the first user as the default user
-                pref.put("activeUser", usersString[0]);
+
             }
+            // set the first user as the default user
+            pref.put("activeUser", usersString[0]);
 
             ObservableList<User> items = FXCollections.observableArrayList(users);
             usersList.setItems(items);
@@ -122,19 +147,19 @@ public class mainController implements Initializable {
             networkManager.sendObject(messagesMap);
 
             String response = (String) networkManager.receiveObject() ;
-           //check if no messages
+            //check if no messages
             if (response.equals("[]")) {
                 System.out.println("no messages");
                 return;
             }
             String[] messagesString = response.split(",");
             List<Message> messages = new ArrayList<Message>();
-          
+
             for (String message : messagesString) {
                 String[] messageParams  = message.split("\\|");
                 System.out.println(message.toString());
 
-                messages.add(new Message(messageParams[0], messageParams[1], messageParams[2]));
+                messages.add(new Message(messageParams[1], messageParams[0], messageParams[2]));
                 // set the first user as the default user
             }
             //  ObservableList<Message> items = FXCollections.observableArrayList(messages);
