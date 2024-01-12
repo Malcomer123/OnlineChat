@@ -60,8 +60,7 @@ public class mainController implements Initializable {
     }
 
     @FXML
-    private void logout(Event
-                                    event) {
+    private void logout(Event event) {
         try {
             System.out.println("logout");
             networkManager = NetworkManager.getInstance();

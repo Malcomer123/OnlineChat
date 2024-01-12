@@ -25,7 +25,7 @@
                   </font>
               </Label>
               <TextField fx:id="email" prefHeight="49.0" prefWidth="340.0" styleClass="emailInput" />
-            <Label id="emailError" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="197.0" styleClass="emailError" text="emailError" textFill="#ff5f5f">
+            <Label fx:id="emailError" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="197.0" styleClass="emailError" text="" textFill="#ff5f5f">
                <font>
                   <Font size="16.0" />
                </font>
@@ -36,7 +36,7 @@
                </font>
             </Label>
             <TextField fx:id="username" id="username" prefHeight="49.0" prefWidth="340.0" styleClass="emailInput" />
-            <Label id="usernameError" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="197.0" styleClass="usernameError" text="usernameError" textFill="#ff5f5f">
+            <Label fx:id="usernameError" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="197.0" styleClass="usernameError" text="" textFill="#ff5f5f">
                <font>
                   <Font size="16.0" />
                </font>
@@ -50,7 +50,7 @@
                </opaqueInsets>
               </Label>
             <PasswordField id="password" fx:id="password" prefHeight="49.0" prefWidth="374.0" styleClass="passwordInput" />
-            <Label id="passwordError" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="198.0" styleClass="passwordError" text="passwordError" textFill="#ff5f5f">
+            <Label fx:id="passwordError" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="198.0" styleClass="passwordError" text="" textFill="#ff5f5f">
                <font>
                   <Font size="16.0" />
                </font>
