@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.HashMap;
 
 public class NetworkManager {
     private static NetworkManager instance;
@@ -47,4 +48,32 @@ public class NetworkManager {
             socket.close();
         }
     }
+/*
+    //listen for new messages from the server to refresh messages ui
+    public void listenForMessages() {
+        new Thread(() -> {
+            try {
+                while (true) {
+                    Object receivedObject = receiveObject();
+                    System.out.println("receivedObject: " + receivedObject);
+                    if (receivedObject instanceof HashMap) {
+                        HashMap<String, String> receivedData = (HashMap<String, String>) receivedObject;
+                        if (receivedData.get("type").equals("newMessage")) {
+                            System.out.println("new message received");
+                            int id  = Integer.parseInt(receivedData.get("idSender"));
+                            // refresh messages ui
+                            mainController mainController = new mainController();
+
+                            mainController.refreshMessages(id);
+                        }
+                    }
+                }
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    */
+
 }

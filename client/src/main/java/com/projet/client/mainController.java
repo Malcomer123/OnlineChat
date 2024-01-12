@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
@@ -50,6 +51,9 @@ public class mainController implements Initializable {
     @FXML
     private ImageView logoutButton;
     NetworkManager networkManager;
+
+    @FXML
+    private Label activeUser;
 
     private int userID;
 
@@ -111,6 +115,8 @@ public class mainController implements Initializable {
             }
             // set the first user as the default user
             pref.put("activeUser", usersString[0]);
+            activeUser.setText(usersString[0].split("\\|")[1]);
+
 
             ObservableList<User> items = FXCollections.observableArrayList(users);
             usersList.setItems(items);
@@ -126,6 +132,9 @@ public class mainController implements Initializable {
                 if (newValue != null) {
                     // Handle user selection change, e.g., refresh messages based on the selected user
                     refreshMessages(newValue);
+                    pref.put("activeUser", newValue.toString());
+                    System.out.println(newValue.getUsername());
+                    activeUser.setText(newValue.getUsername());
                 }
             });
 
@@ -149,6 +158,12 @@ public class mainController implements Initializable {
             //check if no messages
             if (response.equals("[]")) {
                 System.out.println("no messages");
+                //empty messagesList
+                ObservableList<Message> items = FXCollections.observableArrayList(new ArrayList<>());
+                Platform.runLater(() -> {
+                    messagesList.setItems(items);
+                    messagesList.setCellFactory(param -> new MessageCell());
+                });
                 return;
             }
             String[] messagesString = response.split(",");
