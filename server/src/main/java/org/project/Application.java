@@ -1,6 +1,5 @@
 package org.project;
 
-import org.project.Controllers.UserController;
 import org.project.Models.Message;
 import org.project.Models.User;
 import org.project.repos.MessageRepo;
@@ -32,12 +31,13 @@ public class Application{
     public static class Handler implements Runnable {
         private final Socket socket;
         private UserRepo userRepo = new UserRepo();
-        private ServerRepo serverRepo = new ServerRepo();
+        private final ServerRepo serverRepo = new ServerRepo();
         private MessageRepo messageRepo = new MessageRepo();
 
         public Handler(Socket socket) {
             this.socket = socket;
         }
+
 
         @Override
         public void run() {
@@ -54,23 +54,38 @@ public class Application{
                 os = socket.getOutputStream();
                 output = new ObjectOutputStream(os);
                 Long idClient = 0L;
-
+                HashMap<String ,String> objectReceived;
                 while (socket.isConnected()) {
-                    HashMap<String, String> objectReceived = (HashMap<String, String>) input.readObject();
+                    objectReceived = new HashMap<>();
+                    objectReceived = (HashMap<String, String>) input.readObject();
                     switch (objectReceived.get("type")) {
                         case "register":
+                            //check if user exists
+                            if(userRepo.findUserByUsername(objectReceived.get("username")) != null){
+                                output.writeObject("false");
+                                output.flush();
+                                break;
+                            }
                             userRepo.saveUser(new User(objectReceived.get("username"), objectReceived.get("password"), objectReceived.get("email")));
                             output.writeObject("true");
                             output.flush();
                             break;
                         case "login":
+                            System.out.println("login info  = "  +objectReceived);
+                            //check if user exists
+                            if(userRepo.findUserByUsername(objectReceived.get("username")) == null){
+                                output.writeObject("user not found");
+                                output.flush();
+                                break;
+                            }
+
+
                             User user = userRepo.findUserByUsername(objectReceived.get("username"));
-                            if(user.getPassword().equals(objectReceived.get("password"))){
+                            if (user.getPassword().equals(objectReceived.get("password"))) {
                                 output.writeObject("true");
                                 idClient = user.getIdUser();
                                 System.out.println(idClient);
-                            }
-                            else{
+                            } else {
                                 output.writeObject("false");
                             }
                             output.flush();
@@ -84,35 +99,66 @@ public class Application{
                             output.flush();
                             break;
                         case "getUsers":
-                            output.writeObject(userRepo.getAllUsers().toString());
+                            List<User> usersList = userRepo.getAllUsers();
+                            Long finalIdClient1 = idClient;
+                            output.writeObject(usersList.stream().filter(usr -> !Objects.equals(usr.getIdUser(), finalIdClient1)).collect(Collectors.toList()).toString());
                             output.flush();
                             break;
                         case "getMessages":
-                            User accountOwner = userRepo.findUserById(idClient);
+                            /*User accountOwner = userRepo.findUserById(idClient);
                             User accountReceiver = userRepo.findUserById(Long.valueOf(objectReceived.get("targetId")));
+                            HashMap<String, String> finalObjectReceived = objectReceived;
                             List<Message> sentMessages = accountOwner.getMessages().stream()
-                                    .filter(msg -> Objects.equals(msg.getUserUnicast().getIdUser(), Long.valueOf(objectReceived.get("targetId"))))
+                                    .filter(msg -> Objects.equals(msg.getUserUnicast().getIdUser(), Long.valueOf(finalObjectReceived.get("targetId"))))
                                     .collect(Collectors.toList());
                             Long finalIdClient = idClient;
-                            System.out.println(finalIdClient);
+                            //System.out.println(finalIdClient);
                             List<Message> receivedMessages = accountReceiver.getMessages().stream()
                                     .filter(msg -> Objects.equals(msg.getUserUnicast().getIdUser(), finalIdClient))
                                     .collect(Collectors.toList());
 
+                            */
+                            //System.out.println(messagesString);
+                            Long targett = Long.valueOf(objectReceived.get("targetId"));
+                            List<Message> messages = messageRepo.getAllMessages();
+                            System.out.println("messages before sort : "+ messages);
+                            Long finalIdClient2 = idClient;
+                            List<Message> sentMessages = messages.stream()
+                                    .filter(msg -> Objects.equals(msg.getUserOwner().getIdUser(), finalIdClient2) &&
+                                            Objects.equals(msg.getUserUnicast().getIdUser(), targett)).collect(Collectors.toList());
+                            List<Message> receivedMessages = messages.stream()
+                                    .filter(msg -> Objects.equals(msg.getUserOwner().getIdUser(), targett) &&
+                                            Objects.equals(msg.getUserUnicast().getIdUser(), finalIdClient2)).collect(Collectors.toList());
+
                             List<Message> combinedSortedMessages = new ArrayList<>(sentMessages);
                             combinedSortedMessages.addAll(receivedMessages);
-
-                            combinedSortedMessages.sort(Comparator.comparing(Message::getDate));
-
-                            List<String> messagesString = new ArrayList<>();
-                            for(Message m: combinedSortedMessages){
+                            combinedSortedMessages.sort(Comparator.comparing(Message::getIdMessage));
+                                    List<String> messagesString = new ArrayList<>();
+                            for (Message m : combinedSortedMessages) {
                                 messagesString.add(m.toString());
                             }
-                            output.writeObject(messagesString);
+                            System.out.println("after sort   : "+ messagesString);
+                            output.writeObject(messagesString.toString());
+
                             output.flush();
+                            break;
+                        case "sendMessage":
+                            Long targetId = Long.valueOf(objectReceived.get("targetId"));
+                            String content = objectReceived.get("content");
+                            User userOwner = userRepo.findUserById(idClient);
+                            User userTarget = userRepo.findUserById(targetId);
+                            Message newMessage = new Message(content, userOwner, userTarget);
+                            messageRepo.saveMessage(newMessage);
+                            output.writeObject("true");
+                            break;
+                        case "logout":
+                            output.writeObject("true");
+                            socket.close();
                             break;
                     }
                 }
+                userRepo = new UserRepo();
+                messageRepo = new MessageRepo();
             } catch (Exception e) {
                 e.printStackTrace();
             }

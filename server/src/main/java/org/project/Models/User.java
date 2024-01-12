@@ -47,11 +47,7 @@ public class User{
     @Override
     public String toString() {
         return idUser +
-                "|" + username + '\'' +
-                "|" + password + '\'' +
-                "|" + email + '\'' +
-                "|" + messages +
-                "|" + receivedMessages;
+                "|" + username;
     }
 
     public Long getIdUser() {
