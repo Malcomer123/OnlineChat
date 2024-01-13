@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 public class Application{
 
+
     public static void main(String[] args) {
         try (ServerSocket serverSocket = new ServerSocket(9090)) {
             System.out.println("Server is listening on port " + 9090);
