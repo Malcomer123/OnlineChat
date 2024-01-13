@@ -48,6 +48,7 @@ public class ChatApp extends Application implements Initializable {
 
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("WhatsApp ?!");
+        stage.setMaxWidth(800);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

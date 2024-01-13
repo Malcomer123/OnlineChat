@@ -27,6 +27,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.prefs.Preferences;
 
 public class mainController implements Initializable {
@@ -35,6 +37,9 @@ public class mainController implements Initializable {
     private VBox usersContainer;
     private HashMap<String, String> data = new HashMap<>();
     private HashMap<String, String> messagesMap = new HashMap<>();
+
+    private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+
 
 
     @FXML
@@ -61,8 +66,16 @@ public class mainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         initUsers();
         initMessages();
+        refreshMessages();
     }
 
+    // refresh messages every 5 seconds
+    public void refreshMessages() {
+        scheduler.scheduleAtFixedRate(() -> {
+            System.out.println("refreshing messages");
+            refreshMessages(usersList.getSelectionModel().getSelectedItem().getId());
+        }, 0, 2, java.util.concurrent.TimeUnit.SECONDS);
+    }
     @FXML
     private void logout(Event event) {
         try {
@@ -124,14 +137,14 @@ public class mainController implements Initializable {
 
             //set the first user as the default user
             usersList.getSelectionModel().select(0);
-            refreshMessages(usersList.getSelectionModel().getSelectedItem());
+            refreshMessages(usersList.getSelectionModel().getSelectedItem().getId());
 
 
             // Add event handler for user selection change
             usersList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null) {
                     // Handle user selection change, e.g., refresh messages based on the selected user
-                    refreshMessages(newValue);
+                    refreshMessages(newValue.getId());
                     pref.put("activeUser", newValue.toString());
                     System.out.println(newValue.getUsername());
                     activeUser.setText(newValue.getUsername());
@@ -143,15 +156,15 @@ public class mainController implements Initializable {
         }
     }
 
-    private void refreshMessages(User selectedUser) {
+    private void refreshMessages(int id) {
         try {
             System.out.println("refreshing .. ");
-            userID = selectedUser.getId();
+            userID = id;
             networkManager = NetworkManager.getInstance();
             Preferences pref = Preferences.userRoot();
             HashMap<String, String> messagesMap = new HashMap<>();
             messagesMap.put("type", "getMessages");
-            messagesMap.put("targetId", String.valueOf(selectedUser.getId()));
+            messagesMap.put("targetId", String.valueOf(id));
             networkManager.sendObject(messagesMap);
 
             String response = (String) networkManager.receiveObject() ;
@@ -189,7 +202,7 @@ public class mainController implements Initializable {
             //     String receivedObject = (String) networkManager.receiveObject();
 
             System.out.println("messages received after clicking user : " +
-                    selectedUser.getId() +" =  "  + response);
+                    id +" =  "  + response);
             // Update your messagesList based on the receivedObject
 
         } catch (IOException | ClassNotFoundException ex) {
@@ -223,20 +236,6 @@ public class mainController implements Initializable {
 
     }
 
-    private void addUser(String userID, String userName, String imageUrl) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("userCell.fxml"));
-            Node serverNode = loader.load();
-            UserController userController = loader.getController();
-            userController.setUserDetails(userID, userName, imageUrl);
-            usersContainer.getChildren().add(serverNode);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Handle error loading FXML
-            throw new RuntimeException(e);
-        }
-    }
 
     @FXML
     private void sendMessage() {
@@ -259,7 +258,7 @@ public class mainController implements Initializable {
             System.out.println("message sent : " + receivedObject);
             messageInput.setText("");
             // Update your messagesList based on the receivedObject
-            refreshMessages(usersList.getSelectionModel().getSelectedItem());
+            refreshMessages(usersList.getSelectionModel().getSelectedItem().getId());
 
         } catch (IOException  | ClassNotFoundException ex) {
             throw new RuntimeException(ex);

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -51,11 +52,17 @@
                   <font>
                       <Font name="Ebrima" size="19.0" />
                   </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
               </Button>
               <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="522.0">
                   <children>
                       <Label prefHeight="35.0" prefWidth="218.0" styleClass="loginLabel" text="Already have an account ?" />
-                      <Button mnemonicParsing="false" onAction="#gotoLogin" prefHeight="42.0" prefWidth="64.0" styleClass="loginLink" text="Login" />
+                      <Button mnemonicParsing="false" onAction="#gotoLogin" prefHeight="42.0" prefWidth="64.0" styleClass="loginLink" text="Login">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                   </children>
               </HBox>
          </children>
