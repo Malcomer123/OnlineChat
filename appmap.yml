@@ -1,0 +1,4 @@
+name: "OnlineChat"
+appmap_dir: "tmp/appmap"
+packages:
+- path: "com.projet.client"
