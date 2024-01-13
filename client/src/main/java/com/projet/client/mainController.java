@@ -72,25 +72,25 @@ public class mainController implements Initializable {
     // refresh messages every 5 seconds
     public void refreshMessages() {
         scheduler.scheduleAtFixedRate(() -> {
-            System.out.println("refreshing messages");
+            //   System.out.println("refreshing messages");
             refreshMessages(usersList.getSelectionModel().getSelectedItem().getId());
         }, 0, 2, java.util.concurrent.TimeUnit.SECONDS);
     }
     @FXML
     private void logout(Event event) {
         try {
-            System.out.println("logout");
+            //  System.out.println("logout");
             networkManager = NetworkManager.getInstance();
             Preferences pref = Preferences.userRoot();
             HashMap<String, String> data = new HashMap<>();
             // change the active user
-            System.out.println("active user: " + pref.get("activeUser", null));
+            // System.out.println("active user: " + pref.get("activeUser", null));
             pref.put("activeUser", "");
             HashMap<String, String> sendData = new HashMap<>();
             sendData.put("type", "logout");
             networkManager.sendObject(sendData);
             Object receivedObject = networkManager.receiveObject();
-            System.out.println("logout : " + receivedObject);
+            //  System.out.println("logout : " + receivedObject);
             Navigation navigation = new Navigation();
             navigation.navigate(event, "login.fxml");
         } catch (IOException | ClassNotFoundException e) {
@@ -118,7 +118,7 @@ public class mainController implements Initializable {
             List<User> users = new ArrayList<>();
 
             for (String user : usersString) {
-                System.out.println(user.toString());
+                // System.out.println(user.toString());
                 id = user.split("\\|")[0];
                 if (id.startsWith("[")) {
                     id = id.substring(1);
@@ -146,7 +146,7 @@ public class mainController implements Initializable {
                     // Handle user selection change, e.g., refresh messages based on the selected user
                     refreshMessages(newValue.getId());
                     pref.put("activeUser", newValue.toString());
-                    System.out.println(newValue.getUsername());
+                    //  System.out.println(newValue.getUsername());
                     activeUser.setText(newValue.getUsername());
                 }
             });
@@ -158,7 +158,7 @@ public class mainController implements Initializable {
 
     private void refreshMessages(int id) {
         try {
-            System.out.println("refreshing .. ");
+            //   System.out.println("refreshing .. ");
             userID = id;
             networkManager = NetworkManager.getInstance();
             Preferences pref = Preferences.userRoot();
@@ -170,7 +170,7 @@ public class mainController implements Initializable {
             String response = (String) networkManager.receiveObject() ;
             //check if no messages
             if (response.equals("[]")) {
-                System.out.println("no messages");
+                //    System.out.println("no messages");
                 //empty messagesList
                 ObservableList<Message> items = FXCollections.observableArrayList(new ArrayList<>());
                 Platform.runLater(() -> {
@@ -184,7 +184,7 @@ public class mainController implements Initializable {
 
             for (String message : messagesString) {
                 String[] messageParams  = message.split("\\|");
-                System.out.println(message.toString());
+                //   System.out.println(message.toString());
 
                 messages.add(new Message(messageParams[1], messageParams[0], messageParams[2]));
                 // set the first user as the default user
@@ -201,8 +201,8 @@ public class mainController implements Initializable {
 
             //     String receivedObject = (String) networkManager.receiveObject();
 
-            System.out.println("messages received after clicking user : " +
-                    id +" =  "  + response);
+            //    System.out.println("messages received after clicking user : " +
+            id +" =  "  + response);
             // Update your messagesList based on the receivedObject
 
         } catch (IOException | ClassNotFoundException ex) {
@@ -255,7 +255,7 @@ public class mainController implements Initializable {
             networkManager.sendObject(sendData);
 
             Object receivedObject = networkManager.receiveObject();
-            System.out.println("message sent : " + receivedObject);
+            // System.out.println("message sent : " + receivedObject);
             messageInput.setText("");
             // Update your messagesList based on the receivedObject
             refreshMessages(usersList.getSelectionModel().getSelectedItem().getId());
