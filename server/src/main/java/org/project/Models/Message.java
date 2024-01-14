@@ -20,7 +20,7 @@ public class Message implements Serializable {
     @JoinColumn(name = "idOwner", nullable = false)
     private User userOwner;
 
-    private Date date = new Date();
+    private Date date;
 
     @ManyToOne
     @JoinColumn(name = "idReceiver")
@@ -34,6 +34,13 @@ public class Message implements Serializable {
         this.message = message;
         this.userOwner = userOwner;
         this.date = date;
+    }
+
+    public Message(String message, User userOwner, User userUnicast) {
+        this.message = message;
+        this.userOwner = userOwner;
+        this.date = new Date();
+        this.userUnicast = userUnicast;
     }
 
     public Long getIdMessage() {
